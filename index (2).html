@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Geometry</title>
+    <style>
+        /* Reset some default styles for better cross-browser compatibility */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Basic styles for body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Main container for centering everything */
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 20px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header styling */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        /* Styling the unordered list */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        ul li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        ul li a {
+            font-size: 1.1rem;
+            color: #007bff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        ul li a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Section styling */
+        section {
+            display: none; /* Hide all sections by default */
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        /* Form input fields styling */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Result section */
+        .go {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .go a {
+            font-size: 1rem;
+            color: #007bff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .go a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="top">Basic Geometry</h1>
+        <p>In this section, we are going to find the Area of some two-dimensional shapes.</p>
+        <p>You can click on any shape below:</p>
+        <br>
+        <ul id="shape-buttons">
+            <li><a href="#" onclick="showSection('circle')">Circle</a></li>
+            <li><a href="#" onclick="showSection('triangle')">Triangle</a></li>
+            <li><a href="#" onclick="showSection('square')">Square</a></li>
+            <li><a href="#" onclick="showSection('rectangle')">Rectangle</a></li>
+        </ul>
+
+        <!-- Circle Section -->
+        <section id="circle">
+            <h2>Circle Area</h2>
+            <div>
+                <label for="radius">Enter the value of the circle's radius:</label>
+                <input type="text" id="radius">
+            </div>
+            <div>
+                <label for="circle-area">Result:</label>
+                <input type="text" id="circle-area" readonly>
+            </div>
+            <button onclick="calculateCircleArea()">Calculate</button>
+            <br>
+            <hr>
+            <br>
+            <div class="go">
+                <a href="#" onclick="goBackToTop()">Back to Shapes</a>
+            </div>
+        </section>
+
+        <!-- Triangle Section -->
+        <section id="triangle">
+            <h2>Triangle Area</h2>
+            <div>
+                <label for="triangle-base">Enter the value of the triangle's base:</label>
+                <input type="text" id="triangle-base">
+            </div>
+            <div>
+                <label for="triangle-height">Enter the value of the triangle's height:</label>
+                <input type="text" id="triangle-height">
+            </div>
+            <div>
+                <label for="triangle-area">Result:</label>
+                <input type="text" id="triangle-area" readonly>
+            </div>
+            <button onclick="calculateTriangleArea()">Calculate</button>
+            <br>
+            <hr>
+            <br>
+            <div class="go">
+                <a href="#" onclick="goBackToTop()">Back to Shapes</a>
+            </div>
+        </section>
+
+        <!-- Square Section -->
+        <section id="square">
+            <h2>Square Area</h2>
+            <div>
+                <label for="square-side">Enter the value of the square's side:</label>
+                <input type="text" id="square-side">
+            </div>
+            <div>
+                <label for="square-area">Result:</label>
+                <input type="text" id="square-area" readonly>
+            </div>
+            <button onclick="calculateSquareArea()">Calculate</button>
+            <br>
+            <hr>
+            <br>
+            <div class="go">
+                <a href="#" onclick="goBackToTop()">Back to Shapes</a>
+            </div>
+        </section>
+
+        <!-- Rectangle Section -->
+        <section id="rectangle">
+            <h2>Rectangle Area</h2>
+            <div>
+                <label for="rectangle-length">Enter the value of the rectangle's length:</label>
+                <input type="text" id="rectangle-length">
+            </div>
+            <div>
+                <label for="rectangle-width">Enter the value of the rectangle's width:</label>
+                <input type="text" id="rectangle-width">
+            </div>
+            <div>
+                <label for="rectangle-area">Result:</label>
+                <input type="text" id="rectangle-area" readonly>
+            </div>
+            <button onclick="calculateRectangleArea()">Calculate</button>
+            <br>
+            <hr>
+            <br>
+            <div class="go">
+                <a href="#" onclick="goBackToTop()">Back to Shapes</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Function to show the selected section
+        function showSection(shape) {
+            // Hide the shape buttons
+            document.getElementById('shape-buttons').style.display = 'none';
+            
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.style.display = 'none');
+            
+            // Show the selected section
+            const selectedSection = document.getElementById(shape);
+            selectedSection.style.display = 'block';
+        }
+
+        // Function to go back to the shape selection screen
+        function goBackToTop() {
+            // Show the shape buttons again
+            document.getElementById('shape-buttons').style.display = 'block';
+            
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.style.display = 'none');
+        }
+
+        // Calculate Area functions
+        function calculateCircleArea() {
+            const radius = parseFloat(document.getElementById('radius').value);
+            const area = Math.PI * Math.pow(radius, 2);
+            document.getElementById('circle-area').value = area.toFixed(2);
+        }
+
+        function calculateTriangleArea() {
+            const base = parseFloat(document.getElementById('triangle-base').value);
+            const height = parseFloat(document.getElementById('triangle-height').value);
+            const area = (base * height) / 2;
+            document.getElementById('triangle-area').value = area.toFixed(2);
+        }
+
+        function calculateSquareArea() {
+            const side = parseFloat(document.getElementById('square-side').value);
+            const area = Math.pow(side, 2);
+            document.getElementById('square-area').value = area.toFixed(2);
+        }
+
+        function calculateRectangleArea() {
+            const length = parseFloat(document.getElementById('rectangle-length').value);
+            const width = parseFloat(document.getElementById('rectangle-width').value);
+            const area = length * width;
+            document.getElementById('rectangle-area').value = area.toFixed(2);
+        }
+    </script>
+</body>
+</html>
